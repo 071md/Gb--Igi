@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gbé Igi — Envie uma Dúvida</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="wrap topbar">
+      <div class="logo">Gbé Igi</div>
+      <nav>
+        <button class="tab" data-tab="home">Início</button>
+        <button class="tab" data-tab="quiz">Quiz</button>
+        <button class="tab" data-tab="mitos">Mitos</button>
+        <button class="tab" data-tab="guia">Guia</button>
+        <button class="tab" data-tab="duvida" aria-current="page">Dúvidas</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="duvida" class="active">
+      <div class="card">
+        <h2>Envie sua Dúvida</h2>
+        <p class="muted">Pergunte sobre reciclagem, água, energia ou consumo consciente. Suas dúvidas ficam apenas no seu dispositivo.</p>
+        <form id="formDuvida" novalidate>
+          <div>
+            <label for="nome">Nome</label>
+            <input id="nome" name="nome" placeholder="Seu nome" />
+          </div>
+          <div>
+            <label for="email">E-mail</label>
+            <input id="email" name="email" type="email" placeholder="seu@email.com" />
+          </div>
+          <div>
+            <label for="msg">Sua dúvida</label>
+            <textarea id="msg" name="msg" rows="5" placeholder="Escreva sua pergunta"></textarea>
+          </div>
+          <div class="inline-list">
+            <button class="btn" type="submit">Enviar</button>
+            <button class="btn ghost" type="button" id="verDuvidas">Ver dúvidas salvas</button>
+            <button class="btn ghost" type="button" id="limparDuvidas">Limpar</button>
+          </div>
+          <p id="statusForm" class="small muted" role="status" aria-live="polite"></p>
+        </form>
+        <div id="listaDuvidas" class="grid cards" style="margin-top:16px"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span class="muted">© <span id="year"></span> Gbé Igi</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const LS_KEY = 'gbei_duvidas_v1';
+    const form = document.getElementById('formDuvida');
+    const statusForm = document.getElementById('statusForm');
+    const listaDuvidas = document.getElementById('listaDuvidas');
+
+    function getDuvidas(){ return JSON.parse(localStorage.getItem(LS_KEY) || '[]'); }
+    function setDuvidas(arr){ localStorage.setItem(LS_KEY, JSON.stringify(arr)); }
+
+    function renderDuvidas(){
+      const d = getDuvidas();
+      listaDuvidas.innerHTML = d.length? d.map((x,i)=>`
+        <div class="card">
+          <div class="muted small">${new Date(x.data).toLocaleString()}</div>
+          <strong>${x.nome || 'Anônimo'}</strong>
+          <p class="muted" style="margin:8px 0">${x.msg}</p>
+          <button class="btn ghost" data-del="${i}">Excluir</button>
+        </div>`).join('') : '<p class="muted">Nenhuma dúvida salva ainda.</p>';
+      listaDuvidas.querySelectorAll('[data-del]').forEach(b=>{
+        b.addEventListener('click', ()=>{
+          const arr = getDuvidas(); arr.splice(parseInt(b.dataset.del),1); setDuvidas(arr); renderDuvidas();
+        });
+      });
+    }
+
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const nome = form.nome.value.trim();
+      const email = form.email.value.trim();
+      const msg = form.msg.value.trim();
+      if(!msg){ statusForm.textContent='Escreva sua dúvida.'; return; }
+      if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ statusForm.textContent='E-mail inválido.'; return; }
+      const d = getDuvidas();
+      d.unshift({nome,email,msg,data:Date.now()});
+      setDuvidas(d);
+      form.reset();
+      statusForm.textContent='Dúvida salva ✅';
+      renderDuvidas();
+    });
+
+    document.getElementById('verDuvidas').addEventListener('click', renderDuvidas);
+    document.getElementById('limparDuvidas').addEventListener('click', ()=>{
+      if(confirm('Apagar todas as dúvidas?')){ setDuvidas([]); renderDuvidas(); }
+    });
+  </script>
+</body>
+</html>

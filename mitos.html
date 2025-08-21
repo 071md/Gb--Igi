@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mitos Ambientais - Gbẹ́ Igi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Folhas caindo -->
+  <script>
+    function createLeaf() {
+      const leaf = document.createElement("div");
+      leaf.classList.add("leaf");
+      leaf.style.left = Math.random() * window.innerWidth + "px";
+      leaf.style.animationDuration = (5 + Math.random() * 5) + "s";
+      document.body.appendChild(leaf);
+      setTimeout(() => leaf.remove(), 10000);
+    }
+    setInterval(createLeaf, 500);
+  </script>
+
+  <header>
+    <h1>Mitos Ambientais ❌🌍✅</h1>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="guia.html">Guia</a>
+      <a href="duvida.html">Dúvidas</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Descubra a verdade por trás de alguns mitos ambientais</h2>
+    <ul class="mitos-lista">
+      <li><strong>Mito:</strong> Energia solar não tem impactos ambientais.  
+          <br><strong>Verdade:</strong> Apesar de ser limpa, sua produção e descarte geram resíduos.</li>
+
+      <li><strong>Mito:</strong> Apenas a ação humana recente causou mudanças climáticas.  
+          <br><strong>Verdade:</strong> A atividade humana intensificou um processo natural, acelerando o aquecimento.</li>
+
+      <li><strong>Mito:</strong> Produtos químicos usados na agricultura só afetam a plantação.  
+          <br><strong>Verdade:</strong> Eles podem contaminar solos, rios e até a saúde humana.</li>
+
+      <li><strong>Mito:</strong> Todo plástico “biodegradável” se decompõe rápido.  
+          <br><strong>Verdade:</strong> Muitos só se degradam em condições específicas de laboratório.</li>
+
+      <li><strong>Mito:</strong> O desmatamento da Amazônia não afeta o clima global.  
+          <br><strong>Verdade:</strong> Ele influencia chuvas e o equilíbrio climático até em outros continentes.</li>
+
+      <li><strong>Mito:</strong> Energias renováveis não poluem em nada.  
+          <br><strong>Verdade:</strong> São melhores que fósseis, mas ainda geram impacto na produção e manutenção.</li>
+
+      <li><strong>Mito:</strong> Espécies exóticas sempre se adaptam sem problemas.  
+          <br><strong>Verdade:</strong> Muitas vezes elas causam desequilíbrio e ameaçam espécies locais.</li>
+
+      <li><strong>Mito:</strong> O transporte marítimo é pouco poluente.  
+          <br><strong>Verdade:</strong> É um dos maiores emissores de gases do efeito estufa.</li>
+
+      <li><strong>Mito:</strong> A poluição luminosa não afeta a natureza.  
+          <br><strong>Verdade:</strong> Ela desregula ciclos naturais de aves, insetos e plantas.</li>
+
+      <li><strong>Mito:</strong> O aquecimento global não altera tempestades.  
+          <br><strong>Verdade:</strong> Ele aumenta a frequência e a intensidade de eventos extremos.</li>
+
+      <li><strong>Mito:</strong> A reciclagem sozinha resolve o problema do lixo.  
+          <br><strong>Verdade:</strong> Reduzir e reutilizar são ainda mais importantes que reciclar.</li>
+
+      <li><strong>Mito:</strong> Usar canudos de papel é suficiente para salvar os oceanos.  
+          <br><strong>Verdade:</strong> O plástico dos canudos é mínimo comparado a redes de pesca e embalagens.</li>
+
+      <li><strong>Mito:</strong> O ar urbano é sempre mais poluído que o rural.  
+          <br><strong>Verdade:</strong> Áreas rurais também podem ter poluição por agrotóxicos e queimadas.</li>
+    </ul>
+  </main>
+</body>
+</html>

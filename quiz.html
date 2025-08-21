@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz - Gbẹ́ Igi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Folhas animadas -->
+  <script>
+    function createLeaf() {
+      const leaf = document.createElement("div");
+      leaf.classList.add("leaf");
+      leaf.style.left = Math.random() * window.innerWidth + "px";
+      leaf.style.animationDuration = (5 + Math.random() * 5) + "s";
+      document.body.appendChild(leaf);
+      setTimeout(() => leaf.remove(), 10000);
+    }
+    setInterval(createLeaf, 500);
+  </script>
+
+  <header>
+    <h1>Quiz Interativo 🌍</h1>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="mitos.html">Mitos</a>
+      <a href="guia.html">Guia</a>
+      <a href="duvida.html">Dúvidas</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Responda e descubra mitos e verdades!</h2>
+    <div id="quiz"></div>
+    <button onclick="showResults()">Ver Resultados</button>
+    <p id="score"></p>
+  </main>
+
+  <script>
+    const questions = [
+      { q: "A energia solar não gera impactos ambientais, mesmo em larga escala.", a: "Falso" },
+      { q: "As mudanças climáticas são causadas apenas por ações humanas recentes?", a: "Falso" },
+      { q: "O uso de produtos químicos para controle de pragas nunca afeta organismos fora da plantação?", a: "Falso" },
+      { q: "Todo plástico considerado 'biodegradável' se decompõe rapidamente em qualquer ambiente?", a: "Falso" },
+      { q: "O desmatamento da Amazônia não influencia o clima em outros continentes?", a: "Falso" },
+      { q: "O transporte marítimo de cargas é um dos maiores responsáveis pela emissão de gases poluentes no mundo?", a: "Verdadeiro" },
+      { q: "As energias renováveis eliminam completamente a emissão de gases do efeito estufa.", a: "Falso" },
+      { q: "A introdução de espécies exóticas nunca causa desequilíbrio ambiental.", a: "Falso" },
+      { q: "A poluição luminosa pode afetar ciclos naturais de animais e plantas.", a: "Verdadeiro" },
+      { q: "O aquecimento global não interfere na frequência e intensidade de furacões e tempestades.", a: "Falso" }
+    ];
+
+    const quizContainer = document.getElementById("quiz");
+    questions.forEach((item, index) => {
+      const div = document.createElement("div");
+      div.innerHTML = `
+        <p><strong>${index + 1}.</strong> ${item.q}</p>
+        <label><input type="radio" name="q${index}" value="Verdadeiro"> Verdadeiro</label>
+        <label><input type="radio" name="q${index}" value="Falso"> Falso</label>
+      `;
+      quizContainer.appendChild(div);
+    });
+
+    function showResults() {
+      let score = 0;
+      questions.forEach((item, index) => {
+        const selected = document.querySelector(`input[name="q${index}"]:checked`);
+        if (selected && selected.value === item.a) {
+          score++;
+        }
+      });
+      document.getElementById("score").innerText = 
+        `Você acertou ${score} de ${questions.length} perguntas! 🌱`;
+    }
+  </script>
+</body>
+</html>

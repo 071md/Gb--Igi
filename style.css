@@ -1,0 +1,183 @@
+/* ---------- style.css ---------- */
+
+/* Paleta */
+:root{
+  --bg:#0b3d0b;        /* fundo verde escuro */
+  --header:#14532d;    /* cabeçalho */
+  --accent:#22c55e;    /* verde vivo */
+  --accent-2:#16a34a;  /* verde forte */
+  --text:#f0fdf4;      /* texto principal */
+  --muted:#c7f9cc;     /* texto suave */
+  --card:rgba(0,0,0,.35);
+  --border:rgba(255,255,255,.12);
+}
+
+/* Base */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x:hidden;
+}
+
+/* Cabeçalho */
+header{
+  position:sticky; top:0; z-index:10;
+  background: var(--header);
+  border-bottom: 1px solid var(--border);
+}
+.header-wrap{
+  max-width:1100px; margin:0 auto; padding:18px 20px;
+  display:flex; align-items:center; gap:14px;
+}
+.brand{
+  display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px;
+}
+.brand .leafmark{
+  width:28px; height:28px; border-radius:10px;
+  background: radial-gradient(circle at 30% 30%, #34d399, #059669);
+  display:grid; place-items:center;
+  box-shadow: 0 8px 20px rgba(0,0,0,.25);
+}
+.brand span{font-size:1.15rem}
+
+/* Navegação */
+nav{margin-left:auto; display:flex; flex-wrap:wrap; gap:10px}
+nav a{
+  display:inline-block;
+  padding:8px 12px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background: rgba(255,255,255,.04);
+  color: var(--text);
+  font-weight:700;
+  text-decoration:none;
+}
+nav a:hover{ background: rgba(255,255,255,.08) }
+nav a.active{ outline:2px solid var(--accent) }
+
+/* Layout geral */
+main{ position:relative; z-index:5; }
+.wrap{ max-width:1100px; margin:0 auto; padding:24px 20px }
+.grid{ display:grid; gap:18px }
+.cards{ grid-template-columns: repeat(auto-fit, minmax(260px,1fr)) }
+.card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  backdrop-filter: blur(4px);
+}
+
+/* Tipografia */
+h1{ font-size:clamp(26px,3.2vw,36px); margin:6px 0 10px }
+h2{ font-size:clamp(20px,2.4vw,28px); margin:8px 0 8px }
+h3{ margin:6px 0 }
+p{ color: var(--muted); line-height:1.65; margin:8px 0 }
+
+/* Botões */
+.btn{
+  background: var(--accent);
+  color:#052e16;
+  border:none;
+  padding:10px 14px;
+  border-radius:12px;
+  font-weight:800;
+  cursor:pointer;
+}
+.btn:hover{ background: var(--accent-2) }
+.btn.ghost{
+  background: transparent;
+  border:1px solid var(--border);
+  color: var(--text);
+}
+
+/* Hero */
+.hero{ display:grid; grid-template-columns: 1.15fr .85fr; gap:20px; align-items:center }
+.badge{
+  display:inline-flex; gap:8px; align-items:center;
+  background: rgba(34,197,94,.12);
+  border:1px solid rgba(34,197,94,.35);
+  color:#bbf7d0;
+  padding:6px 10px; border-radius:999px; font-weight:800;
+}
+.inline{ display:flex; gap:10px; flex-wrap:wrap }
+.chip{
+  background: rgba(255,255,255,.06);
+  border:1px solid var(--border);
+  padding:6px 10px; border-radius:999px; color:#e7fee7; font-weight:700;
+}
+
+/* Seções reutilizáveis */
+section + section{ margin-top:18px }
+
+/* Tabela (guia) */
+table{ width:100%; border-collapse:separate; border-spacing:0 8px }
+thead th{ font-size:14px; text-align:left; padding:8px; color:#dcfce7 }
+tbody tr{ background: var(--card) }
+tbody td{ padding:12px 10px; border-top:1px solid var(--border); border-bottom:1px solid var(--border) }
+tbody tr td:first-child{ border-left:1px solid var(--border); border-top-left-radius:12px; border-bottom-left-radius:12px }
+tbody tr td:last-child{ border-right:1px solid var(--border); border-top-right-radius:12px; border-bottom-right-radius:12px }
+.yes{ color:#86efac; font-weight:800 }
+.no{ color:#fca5a5; font-weight:800 }
+
+/* Formulário */
+form{ display:grid; gap:12px }
+label{ font-weight:700 }
+input, textarea{
+  width:100%; padding:12px 14px; border-radius:12px;
+  border:1px solid var(--border); background: rgba(255,255,255,.06); color:var(--text)
+}
+textarea{ min-height:120px }
+
+/* ------ Folhas MAIS VERDES e LINDAS ------ */
+#leaves{
+  position:fixed; inset:0;
+  pointer-events:none; overflow:hidden; z-index:0;
+}
+
+/* Camada que balança (sway) */
+.leaf-wrap{
+  position:fixed; top:-10vh;
+  animation: sway var(--swayDur, 5s) ease-in-out infinite;
+}
+
+/* Camada que cai (fall) */
+.leaf-fall{
+  animation: fall var(--fallDur, 11s) linear infinite;
+}
+
+/* A folha em si (gira) */
+.leaf{
+  width: var(--size, 34px);
+  height: var(--size, 34px);
+  opacity: var(--op, .9);
+  background-repeat:no-repeat;
+  background-size:contain;
+  animation: spin var(--spinDur, 10s) linear infinite;
+}
+
+/* Duas variantes com gradiente (SVG embutido) */
+.leaf--v1{
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%2322c55e'/%3E%3Cstop offset='100%25' stop-color='%2316a34a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M32 6c11 5 20 14 20 26S43 53 32 58C21 53 12 44 12 32S21 11 32 6z' fill='url(%23g)'/%3E%3Cpath d='M32 10v44' stroke='%23052e16' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+.leaf--v2{
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%2334d399'/%3E%3Cstop offset='100%25' stop-color='%23059669'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M32 8c10 5 18 13 18 24s-8 19-18 24C22 51 14 43 14 32S22 13 32 8z' fill='url(%23g)'/%3E%3Cpath d='M32 12v40' stroke='%23052e16' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+/* Animações */
+@keyframes fall{ from{ transform: translateY(0) } to{ transform: translateY(120vh) } }
+@keyframes sway{ 0%{ transform: translateX(0) } 50%{ transform: translateX(var(--sway, 40px)) } 100%{ transform: translateX(0) } }
+@keyframes spin{ from{ transform: rotate(0) } to{ transform: rotate(360deg) } }
+
+/* Rodapé */
+footer{ border-top:1px solid var(--border); padding:24px 20px; color:#c9fdd1 }
+
+/* Responsivo */
+@media (max-width:860px){
+  .hero{ grid-template-columns:1fr }
+  nav{ margin-left:0 }
+}

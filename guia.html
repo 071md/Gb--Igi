@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia Sustentável - Gbẹ́ Igi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Folhas caindo -->
+  <script>
+    function createLeaf() {
+      const leaf = document.createElement("div");
+      leaf.classList.add("leaf");
+      leaf.style.left = Math.random() * window.innerWidth + "px";
+      leaf.style.animationDuration = (5 + Math.random() * 5) + "s";
+      document.body.appendChild(leaf);
+      setTimeout(() => leaf.remove(), 10000);
+    }
+    setInterval(createLeaf, 500);
+  </script>
+
+  <header>
+    <h1>Guia Sustentável 🌍✨</h1>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="mitos.html">Mitos</a>
+      <a href="duvida.html">Dúvidas</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Dicas para viver de forma mais sustentável</h2>
+
+    <section class="guia-dicas">
+      <article>
+        <h3>🌱 Reduza o consumo</h3>
+        <p>Compre apenas o necessário e dê preferência a produtos duráveis.</p>
+      </article>
+
+      <article>
+        <h3>♻️ Reutilize sempre</h3>
+        <p>Transforme frascos de vidro, roupas antigas e embalagens em novos objetos.</p>
+      </article>
+
+      <article>
+        <h3>🚲 Transporte consciente</h3>
+        <p>Use bicicleta, transporte público ou compartilhe caronas para reduzir emissões.</p>
+      </article>
+
+      <article>
+        <h3>💡 Economize energia</h3>
+        <p>Desligue aparelhos da tomada e dê preferência a lâmpadas LED.</p>
+      </article>
+
+      <article>
+        <h3>💧 Preserve a água</h3>
+        <p>Evite banhos longos, conserte vazamentos e reutilize água da chuva.</p>
+      </article>
+
+      <article>
+        <h3>🌳 Cuide das árvores</h3>
+        <p>Plante árvores e ajude a manter áreas verdes na sua comunidade.</p>
+      </article>
+
+      <article>
+        <h3>🛍️ Evite descartáveis</h3>
+        <p>Prefira sacolas retornáveis e utensílios reutilizáveis no dia a dia.</p>
+      </article>
+
+      <article>
+        <h3>🥦 Alimentação sustentável</h3>
+        <p>Dê preferência a alimentos orgânicos, locais e de origem vegetal.</p>
+      </article>
+
+      <article>
+        <h3>👕 Moda consciente</h3>
+        <p>Compre roupas de segunda mão ou de marcas que respeitam o meio ambiente.</p>
+      </article>
+
+      <article>
+        <h3>📚 Conscientize</h3>
+        <p>Compartilhe informações ambientais e incentive outras pessoas a agir.</p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
